@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-function App() {
+const App = () => {
+  return <PersonList />;
+};
+
+const PersonList = () => {
+  const people = [
+    {
+      name: "John",
+      job: "Developer",
+      img: 22
+    },
+    {
+      name: "Jake",
+      job: "Designer",
+      img: 18
+    },
+    {
+      name: "Peter",
+      job: "Artist",
+      img: 30
+    }
+  ];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Person people={people[0]} />
+      <Person people={people[1]}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+        condimentum ligula ac sapien dictum imperdiet.{" "}
+      </Person>
+      <Person people={people[2]} />
     </div>
   );
-}
+};
+const Person = props => {
+  const { name, job, img } = props.people;
+  const { children } = props;
+  const url = `https://randomuser.me/api/portraits/thumb/men/${img}.jpg`;
+  return (
+    <div className="person">
+      <img src={url} alt="" />
+      <div>
+        <h4>{name}</h4>
+        <h4>{job}</h4>
+        <p>{children}</p>
+      </div>
+    </div>
+  );
+};
 
 export default App;
